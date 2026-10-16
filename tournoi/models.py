@@ -9,7 +9,7 @@ class Equipe(models.Model):
     PROMO = [("l1", "L1"), ("l2", "L2"),("l3", "L3")]
 
     # TODO: Define fields here
-    nom = models.CharField(max_length=100)
+    nom = models.CharField(max_length=100,unique=True)
     promo = models.CharField(max_length=5,choices=PROMO)
 
     class Meta:
@@ -18,4 +18,4 @@ class Equipe(models.Model):
         verbose_name_plural = "Equipes"
 
     def __str__(self):
-        return f"{self.nom} - {self.promo}"
+        return f"{self.nom}"
