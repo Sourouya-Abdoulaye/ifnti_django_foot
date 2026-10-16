@@ -19,3 +19,18 @@ class Equipe(models.Model):
 
     def __str__(self):
         return f"{self.nom}"
+
+
+
+
+class Match(models.Model):
+    date = models.DateField()
+    equipe_visiteur = models.ForeignKey(Equipe,on_delete=models.SET_NULL)
+    equipe_domicile = models.ForeignKey(Equipe,on_delete=models.SET_NULL)
+    score_domicile = models.IntegerField(null=True,blank=True)
+    score_visiteur = models.IntegerField(null=True,blank=True)
+    
+    
+    
+    def __str__(self):
+        return f"Les {self.equipe_domicile}: {self.score_equipe_domicile}-{self.score_equipe_domicile}"
