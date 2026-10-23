@@ -1,5 +1,5 @@
 import pytest
-from tournoi.models import Equipe
+from tournoi.models import Equipe,Match
 
 
 
@@ -32,7 +32,7 @@ def test_une_equipe_s_affiche_par_son_nom(db):
 def test_un_match_oppose_deux_equipes(db):
     domicile = Equipe.objects.create(nom="Les Lions", promo="L1")
     exterieur = Equipe.objects.create(nom="Les Éperviers", promo="L1")
-    match = Match.objects.create(equipe_domicile=domicile, equipe_visiteuse=exterieur,date="2026-10-18")
+    match = Match.objects.create(equipe_domicile=domicile, equipe_visiteur=exterieur,date="2026-10-18")
 
     assert match.equipe_domicile == domicile
     assert match.equipe_visiteur == exterieur
@@ -44,9 +44,9 @@ def test_un_match_oppose_deux_equipes(db):
 
 
 def test_tant_qu_un_match_n_est_pas_joue_le_score_est_inconnu(db):
-    domicile = Equipe.objects.create(nom="Les Lions", promo="L1")
+    domicile = Equipe.objects.create(nom="Les Lions", promo="L2")
     exterieur = Equipe.objects.create(nom="Les Éperviers", promo="L1")
-    match = Match.objects.create(equipe_domicile=domicile, equipe_visiteuse=exterieur,date="2026-10-18")
+    match = Match.objects.create(equipe_domicile=domicile, equipe_visiteur=exterieur,date="2026-10-18")
 
     assert match.score_domicile is None
     assert match.score_visiteur is None
